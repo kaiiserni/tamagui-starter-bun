@@ -1,9 +1,5 @@
 # Tamagui + Solito + Next + Expo Monorepo
 
-```sh
-npm create tamagui
-```
-
 ## 🔦 About
 
 This monorepo is a starter for an Expo + Next.js + Tamagui + Solito app.
@@ -36,17 +32,19 @@ The main apps are:
 
 You can add other folders inside of `packages/` if you know what you're doing and have a good reason to.
 
+> [!TIP]
+> Switching from `app` to `pages` router:
+>
+> - delete `app` folder and rename `pages-demo` to `pages`
+> - search for `app router` and `pages router` keywords and follow the instructions
+
 ## 🏁 Start the app
 
-- Install dependencies: `yarn`
+- Install dependencies: `bun i`
 
-- Next.js local dev: `yarn web`
+- Next.js local dev: `bun web`
 
-To run with optimizer on in dev mode (just for testing, it's faster to leave it off): `yarn web:extract`. To build for production `yarn web:prod`.
-
-To see debug output to verify the compiler, add `// debug` as a comment to the top of any file.
-
-- Expo local dev: `yarn native`
+- Expo local dev: `bun native`
 
 ## UI Kit
 
@@ -62,9 +60,9 @@ If you're installing a JavaScript-only dependency that will be used across platf
 
 ```sh
 cd packages/app
-yarn add date-fns
+bun add date-fns
 cd ../..
-yarn
+bun i
 ```
 
 ### Native dependencies
@@ -73,9 +71,9 @@ If you're installing a library with any native code, you must install it in `exp
 
 ```sh
 cd apps/expo
-yarn add react-native-reanimated
+bun add react-native-reanimated
 cd ..
-yarn
+bun i
 ```
 
 ## Update new dependencies
@@ -83,16 +81,9 @@ yarn
 ### Pure JS dependencies
 
 ```sh
-yarn upgrade-interactive
+bun upgrade-interactive
 ```
 
 You can also install the native library inside of `packages/app` if you want to get autoimport for that package inside of the `app` folder. However, you need to be careful and install the _exact_ same version in both packages. If the versions mismatch at all, you'll potentially get terrible bugs. This is a classic monorepo issue. I use `lerna-update-wizard` to help with this (you don't need to use Lerna to use that lib).
 
 You may potentially want to have the native module transpiled for the next app. If you get error messages with `Cannot use import statement outside a module`, you may need to use `transpilePackages` in your `next.config.js` and add the module to the array there.
-
-### Deploying to Vercel
-
-- Root: `apps/next`
-- Install command to be `yarn set version stable && yarn install`
-- Build command: leave default setting
-- Output dir: leave default setting
