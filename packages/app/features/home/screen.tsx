@@ -88,12 +88,8 @@ function SheetDemo() {
         onPositionChange={setPosition}
         dismissOnSnapToBottom
       >
-        <Sheet.Overlay
-          animation="lazy"
-          enterStyle={{ opacity: 0 }}
-          exitStyle={{ opacity: 0 }}
-        />
-        <Sheet.Frame ai="center" jc="center">
+        <Sheet.Overlay animation="lazy" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
+        <Sheet.Frame ai="center" jc="center" bg="$color2">
           <Sheet.Handle />
           <Button
             size="$6"
