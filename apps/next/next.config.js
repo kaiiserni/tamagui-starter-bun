@@ -15,7 +15,8 @@ const boolVals = {
 }
 
 const disableExtraction =
-  boolVals[process.env.DISABLE_EXTRACTION] ?? process.env.NODE_ENV === 'development'
+  boolVals[process.env.DISABLE_EXTRACTION] ??
+  process.env.NODE_ENV === 'development'
 
 const optimizeCss = false
 
@@ -24,9 +25,10 @@ const plugins = [
   withTamagui({
     config: '../../packages/ui/src/tamagui.config.ts',
     components: ['tamagui', '@my/ui'],
-    appDir:true,
+    appDir: false,
     importsWhitelist: ['constants.js', 'colors.js'],
-    outputCSS: process.env.NODE_ENV === 'production' ? './public/tamagui.css' : null,
+    outputCSS:
+      process.env.NODE_ENV === 'production' ? './public/tamagui.css' : null,
     logTimings: true,
     disableExtraction,
     shouldExtract: (path) => {
@@ -34,7 +36,13 @@ const plugins = [
         return true
       }
     },
-    excludeReactNativeWebExports: ['Switch', 'ProgressBar', 'Picker', 'CheckBox', 'Touchable'],
+    excludeReactNativeWebExports: [
+      'Switch',
+      'ProgressBar',
+      'Picker',
+      'CheckBox',
+      'Touchable',
+    ],
   }),
 ]
 

@@ -33,9 +33,9 @@ The main apps are:
 You can add other folders inside of `packages/` if you know what you're doing and have a good reason to.
 
 > [!TIP]
-> Switching from `app` to `pages` router:
+> Switching from `pages` to `app` router:
 >
-> - delete `app` folder and rename `pages-demo` to `pages`
+> - delete `pages` folder and rename `app-disabled` to `app`
 > - search for `app router` and `pages router` keywords and follow the instructions
 
 ## 🏁 Start the app
