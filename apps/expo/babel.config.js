@@ -1,5 +1,5 @@
-module.exports = function (api) {
-  api.cache(true);
+module.exports = function(api) {
+  api.cache(true)
   return {
     presets: [['babel-preset-expo', { jsxRuntime: 'automatic' }]],
     plugins: [
@@ -9,26 +9,24 @@ module.exports = function (api) {
         {
           root: ['../..'],
           alias: {
-            // define aliases to shorten the import paths
             app: '../../packages/app',
             '@my/ui': '../../packages/ui',
           },
           extensions: ['.js', '.jsx', '.tsx', '.ios.js', '.android.js'],
         },
       ],
-      // if you want reanimated support
-      // 'react-native-reanimated/plugin',
       ...(process.env.EAS_BUILD_PLATFORM === 'android'
         ? []
         : [
-            [
-              '@tamagui/babel-plugin',
-              {
-                components: ['@my/ui', 'tamagui'],
-                config: '../../packages/config/src/tamagui.config.ts',
-              },
-            ],
-          ]),
+          [
+            '@tamagui/babel-plugin',
+            {
+              components: ['@my/ui', 'tamagui'],
+              config: '../../packages/ui/src/tamagui.config.ts',
+            },
+          ],
+        ]),
+      'jotai/babel/plugin-react-refresh',
     ],
-  };
-};
+  }
+}

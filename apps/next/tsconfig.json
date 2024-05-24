@@ -1,10 +1,19 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": ".",
     "paths": {
-      "react-native": ["react-native-web"]
+      "react-native": [
+        "react-native-web-lite"
+      ],
+      "app/*": [
+        "../../packages/app/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -16,14 +25,33 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noUnusedLocals": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
         "name": "next"
+      },
+      {
+        "name": "@nderscore/tamagui-typescript-plugin",
+        "pathToApp": "apps/next",
+        "defaultTheme": "light",
+        "colorTileSize": 18,
+        "completionFilters": {
+          "showColorTokens": true,
+          "showTrueTokens": true,
+          "custom": {}
+        }
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

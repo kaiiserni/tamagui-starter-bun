@@ -8,7 +8,10 @@ npm create tamagui
 
 This monorepo is a starter for an Expo + Next.js + Tamagui + Solito app.
 
-Many thanks to [@FernandoTheRojo](https://twitter.com/fernandotherojo) for the Solito starter monorepo which this was forked from. Check out his [talk about using expo + next together at Next.js Conf 2021](https://www.youtube.com/watch?v=0lnbdRweJtA).
+## 👏 Special Thanks
+
+- [Nate Birdman](https://twitter.com/natebirdman) - Creator of Tamagui
+- [Fernando Rojo](https://twitter.com/fernandotherojo) - Creator of Solito
 
 ## 📦 Included packages
 

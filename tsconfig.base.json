@@ -15,20 +15,27 @@
     "noEmitOnError": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noUnusedParameters": false,
+    "experimentalDecorators": true,
     "useUnknownInCatchVariables": false,
     "preserveConstEnums": true,
-    // DONT DO THIS so jsdoc will remain
-    "removeComments": false,
+    "removeComments": true,
     "skipLibCheck": true,
     "sourceMap": false,
     "strictNullChecks": true,
     "target": "es2020",
-    "types": ["node"],
-    "lib": ["dom", "esnext"]
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
   },
-  "exclude": ["_"],
+  "exclude": [
+    "_"
+  ],
   "typeAcquisition": {
     "enable": true
   }

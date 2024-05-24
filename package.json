@@ -1,24 +1,31 @@
 {
-  "name": "starter-free",
+  "name": "tamagui-starter-bun",
   "private": true,
   "workspaces": [
     "./apps/*",
     "./packages/*"
   ],
   "scripts": {
-    "native": "cd apps/expo && yarn start",
-    "watch": "yarn workspaces foreach -pi run watch",
-    "vercel:install": "yarn set version 3.5 && yarn install",
-    "web": "yarn build && cd apps/next && yarn next",
-    "web:extract": "DISABLE_EXTRACTION=false yarn workspace next-app dev",
-    "web:prod": "yarn workspace next-app build",
-    "web:prod:serve": "yarn workspace next-app serve",
-    "fix": "manypkg fix",
-    "postinstall": "yarn check-deps && yarn build",
-    "build": "yarn workspaces foreach --all --exclude next-app run build",
-    "upgrade:tamagui": "yarn up '*tamagui*'@latest '@tamagui/*'@latest react-native-web-lite@latest",
-    "upgrade:tamagui:canary": "yarn up '*tamagui*'@canary '@tamagui/*'@canary react-native-web-lite@canary",
-    "check-deps": "check-dependency-version-consistency ."
+    "ios": "cd apps/expo && bun ios",
+    "ios:d": "cd apps/expo && bun ios:d",
+    "android": "cd apps/expo && bun android",
+    "web": "cd apps/next && bun dev",
+    "native": "cd apps/expo && bun dev",
+    "native:prebuild": "cd apps/expo && bun prebuild",
+    "native:prod": "cd apps/expo && bun dev:prod",
+    "build": "cd packages/ui && tamagui-build",
+    "build:web": "cd apps/next && bun run build",
+    "build:ios": "cd apps/expo && bun build:ios",
+    "build:android": "cd apps/expo && bun build:android",
+    "build:ios:preview": "cd apps/expo && bun build:ios:preview",
+    "build:android:preview": "cd apps/expo && bun build:android:preview",
+    "submit:android": "cd apps/expo && eas submit --platform android --path ./app-release.aab",
+    "check-deps": "check-dependency-version-consistency .",
+    "check-types": "tsc --noEmit",
+    "deps:fix": "manypkg fix",
+    "deps:update": "bun x npm-check-updates -ui -ws",
+    "postinstall": "bun run build && bun check-deps",
+    "clean": "git clean -xdf node_modules && rm -f bun.lockb && rm -rf ./apps/next/.next && rm -rf ./apps/next/.tamagui && rm -rf ./apps/next/node_modules && rm -rf ./packages/ui/dist"
   },
   "resolutions": {
     "react": "^18.2.0",
@@ -31,11 +38,12 @@
     "@babel/runtime": "^7.18.9",
     "@manypkg/cli": "^0.19.1",
     "check-dependency-version-consistency": "^3.0.3",
+    "@nderscore/tamagui-typescript-plugin": "^0.6.0",
+    "npm-run-all": "^4.1.5",
     "eslint": "^8.21.0",
     "node-gyp": "^9.3.1",
+    "react-native-url-polyfill": "^2.0.0",
     "prettier": "^2.7.1",
-    "turbo": "^1.10.3",
     "typescript": "^5.3.3"
-  },
-  "packageManager": "yarn@4.1.0"
+  }
 }

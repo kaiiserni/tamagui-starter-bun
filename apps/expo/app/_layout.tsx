@@ -1,8 +1,10 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { Provider } from 'app/provider'
 import { useFonts } from 'expo-font'
-import { Stack } from 'expo-router'
+import { Stack, SplashScreen } from 'expo-router'
 import { useColorScheme } from 'react-native'
+import { useEffect } from 'react'
+
+SplashScreen.preventAutoHideAsync()
 
 export default function HomeLayout() {
   const [loaded] = useFonts({
@@ -11,14 +13,18 @@ export default function HomeLayout() {
   })
   const scheme = useColorScheme()
 
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync()
+    }
+  }, [loaded])
+
   if (!loaded) {
     return null
   }
   return (
     <Provider>
-      <ThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack />
-      </ThemeProvider>
+      <Stack />
     </Provider>
   )
 }

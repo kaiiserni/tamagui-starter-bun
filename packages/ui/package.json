@@ -17,8 +17,12 @@
     "watch": "tamagui-build --skip-types --watch"
   },
   "dependencies": {
-    "@my/config": "0.0.1",
     "@tamagui/toast": "^1.98.1",
+    "@tamagui/animations-react-native": "^1.98.1",
+    "@tamagui/font-inter": "^1.98.1",
+    "@tamagui/react-native-media-driver": "^1.98.1",
+    "@tamagui/shorthands": "^1.98.1",
+    "@tamagui/themes": "^1.98.1",
     "tamagui": "^1.98.1"
   },
   "devDependencies": {

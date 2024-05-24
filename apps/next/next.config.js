@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 const { withTamagui } = require('@tamagui/next-plugin')
 const { join } = require('path')
+const withPWA = require('@ducanh2912/next-pwa').default({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+  register: true,
+  sw: 'service-worker.js',
+  swcMinify: true,
+})
 
 const boolVals = {
   true: true,
@@ -10,30 +17,12 @@ const boolVals = {
 const disableExtraction =
   boolVals[process.env.DISABLE_EXTRACTION] ?? process.env.NODE_ENV === 'development'
 
-console.log(`
-
-Welcome to Tamagui!
-
-You can update this monorepo to the latest Tamagui release just by running:
-
-yarn upgrade:tamagui
-
-We've set up a few things for you.
-
-See the "excludeReactNativeWebExports" setting in next.config.js, which omits these
-from the bundle: Switch, ProgressBar Picker, CheckBox, Touchable. To save more,
-you can add ones you don't need like: AnimatedFlatList, FlatList, SectionList,
-VirtualizedList, VirtualizedSectionList.
-
-🐣
-
-Remove this log in next.config.js.
-
-`)
+const optimizeCss = false
 
 const plugins = [
+  withPWA,
   withTamagui({
-    config: '../../packages/config/src/tamagui.config.ts',
+    config: '../../packages/ui/src/tamagui.config.ts',
     components: ['tamagui', '@my/ui'],
     importsWhitelist: ['constants.js', 'colors.js'],
     outputCSS: process.env.NODE_ENV === 'production' ? './public/tamagui.css' : null,
@@ -66,9 +55,23 @@ module.exports = function () {
       'expo-linking',
       'expo-constants',
       'expo-modules-core',
+      'react-native-safe-area-context',
+      'react-native-reanimated',
+      'react-native-gesture-handler',
     ],
     experimental: {
+      optimizeCss,
+      webpackBuildWorker: true,
+      forceSwcTransforms: true,
       scrollRestoration: true,
+      swcPlugins: [
+        [
+          'next-superjson-plugin',
+          {
+            excluded: [],
+          },
+        ],
+      ],
     },
   }
 

@@ -46,3 +46,5 @@ thumbs.db
 
 # turbo build log
 **/.turbo/*
+
+Session.vim
