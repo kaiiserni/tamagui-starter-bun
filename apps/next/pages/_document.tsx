@@ -1,4 +1,5 @@
-import { config } from '@my/ui'
+import { Children } from 'react'
+import { AppRegistry } from 'react-native'
 import NextDocument, {
   DocumentContext,
   DocumentInitialProps,
@@ -7,8 +8,7 @@ import NextDocument, {
   Main,
   NextScript,
 } from 'next/document'
-import { Children } from 'react'
-import { AppRegistry } from 'react-native'
+import { config } from '@my/ui'
 
 export default class Document extends NextDocument {
   static async getInitialProps(
@@ -31,6 +31,11 @@ export default class Document extends NextDocument {
           }),
         }}
       />,
+      <style jsx global>{`
+        html {
+          font-family: 'Inter';
+        }
+      `}</style>,
     ]
 
     return { ...page, styles: Children.toArray(styles) }

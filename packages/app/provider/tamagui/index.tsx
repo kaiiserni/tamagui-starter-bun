@@ -3,6 +3,7 @@ import { useRootTheme } from '../theme'
 
 export const TamaguiProvider = ({ children }: { children: React.ReactNode }): React.ReactNode => {
   const [currentTheme] = useRootTheme()
+  // const scheme = useColorScheme()
 
   return (
     <TamaguiProviderOG

@@ -1,27 +1,45 @@
 import { Provider } from 'app/provider'
 import { useFonts } from 'expo-font'
-import { Stack, SplashScreen } from 'expo-router'
-import { useColorScheme } from 'react-native'
+import { SplashScreen, Stack } from 'expo-router'
 import { useEffect } from 'react'
+import { useColorScheme } from 'react-native'
 
 SplashScreen.preventAutoHideAsync()
 
-export default function HomeLayout() {
-  const [loaded] = useFonts({
+export {
+  // Catch any errors thrown by the Layout component.
+  ErrorBoundary,
+} from 'expo-router'
+
+export const unstable_settings = {
+  // Ensure that reloading on `/modal` keeps a back button present.
+  initialRouteName: 'Home',
+}
+
+SplashScreen.preventAutoHideAsync()
+
+export default function RootLayout() {
+  const [interLoaded, interError] = useFonts({
     Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
     InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
   })
-  const scheme = useColorScheme()
 
   useEffect(() => {
-    if (loaded) {
+    if (interLoaded || interError) {
       SplashScreen.hideAsync()
     }
-  }, [loaded])
+  }, [interLoaded, interError])
 
-  if (!loaded) {
+  if (!interLoaded && !interError) {
     return null
   }
+
+  return <RootLayoutNav />
+}
+
+function RootLayoutNav() {
+  const scheme = useColorScheme()
+
   return (
     <Provider>
       <Stack />

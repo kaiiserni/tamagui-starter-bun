@@ -6,45 +6,42 @@ import {
   ScrollView,
   Separator,
   Sheet,
-  useToastController,
-  CustomToast,
-  ToastViewport,
+  SwitchRouterButton,
+  SwitchThemeButton,
   XStack,
   YStack,
+  useToastController,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
+import { ThemeToggle } from 'app/components/theme/Toggle'
 import { useState } from 'react'
 import { useSheetOpen } from '../../atoms/sheet'
-import { ThemeToggle } from 'app/components/theme/Toggle'
 
 // if using app router
 // import { useLink } from 'solito/navigation'
 // if using pages router
+import { Platform } from 'react-native'
 import { useLink } from 'solito/link'
 
-export function HomeScreen() {
+export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
   const linkProps = useLink({
     href: '/user/kaiiserni',
   })
 
   return (
     <ScrollView>
-      <YStack f={1} jc="center" ai="center" p="$4" gap="$4">
+      <YStack f={1} jc="center" ai="center" gap="$8" p="$4" bg="$background">
         <YStack gap="$4" bc="$background">
           <H1 ta="center">Welcome to Tamagui.</H1>
           <Paragraph ta="center">
-            Here's a basic starter to show navigating from one screen to
-            another. This screen uses the same code on Next.js and React Native.
+            Here's a basic starter to show navigating from one screen to another. This screen uses
+            the same code on Next.js and React Native.
           </Paragraph>
 
           <Separator />
           <Paragraph ta="center">
             Made possible by{' '}
-            <Anchor
-              color="$color12"
-              href="https://twitter.com/natebirdman"
-              target="_blank"
-            >
+            <Anchor color="$color12" href="https://twitter.com/natebirdman" target="_blank">
               @natebirdman
             </Anchor>
           </Paragraph>
@@ -89,8 +86,24 @@ function SheetDemo() {
         dismissOnSnapToBottom
       >
         <Sheet.Overlay animation="lazy" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
-        <Sheet.Frame ai="center" jc="center" bg="$color2">
-          <Sheet.Handle />
+        <Sheet.Handle bg="$gray8" />
+        <Sheet.Frame ai="center" jc="center" gap="$10" bg="$color2">
+          <Paragraph ta="center">
+            Made by{' '}
+            <Anchor color="$color12" href="https://twitter.com/natebirdman" target="_blank">
+              @natebirdman
+            </Anchor>
+            ,{' '}
+            <Anchor
+              color="$color12"
+              href="https://github.com/tamagui/tamagui"
+              target="_blank"
+              rel="noreferrer"
+            >
+              give it a ⭐️
+            </Anchor>
+          </Paragraph>
+
           <Button
             size="$6"
             circular

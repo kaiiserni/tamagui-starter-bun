@@ -18,8 +18,6 @@ const disableExtraction =
   boolVals[process.env.DISABLE_EXTRACTION] ??
   process.env.NODE_ENV === 'development'
 
-const optimizeCss = false
-
 const plugins = [
   withPWA,
   withTamagui({
@@ -69,18 +67,7 @@ module.exports = function () {
       'react-native-gesture-handler',
     ],
     experimental: {
-      optimizeCss,
-      webpackBuildWorker: true,
-      forceSwcTransforms: true,
       scrollRestoration: true,
-      swcPlugins: [
-        [
-          'next-superjson-plugin',
-          {
-            excluded: [],
-          },
-        ],
-      ],
     },
   }
 

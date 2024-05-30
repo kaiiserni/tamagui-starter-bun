@@ -13,11 +13,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
         <TamaguiProvider>
           <SafeAreaProvider>
             <SolitoImageProvider>
-              <ToastProvider
-                swipeDirection="horizontal"
-                duration={6000}
-                native={['mobile']}
-              >
+              <ToastProvider swipeDirection="horizontal" duration={6000} native={['mobile']}>
                 {children}
                 <CustomToast />
                 <ToastViewport />
