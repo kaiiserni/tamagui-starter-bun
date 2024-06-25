@@ -6,21 +6,19 @@ import {
   ScrollView,
   Separator,
   Sheet,
-  SwitchRouterButton,
-  SwitchThemeButton,
   XStack,
   YStack,
   useToastController,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import { ThemeToggle } from 'app/components/theme/Toggle'
+// import { ThemeToggle } from 'app/components/theme/Toggle'
 import { useState } from 'react'
 import { useSheetOpen } from '../../atoms/sheet'
 
 // if using app router
 // import { useLink } from 'solito/navigation'
 // if using pages router
-import { Platform } from 'react-native'
+import { ThemeToggle } from 'app/components/theme/Toggle'
 import { useLink } from 'solito/link'
 
 export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
@@ -88,21 +86,20 @@ function SheetDemo() {
         <Sheet.Overlay animation="lazy" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
         <Sheet.Handle bg="$gray8" />
         <Sheet.Frame ai="center" jc="center" gap="$10" bg="$color2">
-          <Paragraph ta="center">
-            Made by{' '}
-            <Anchor color="$color12" href="https://twitter.com/natebirdman" target="_blank">
-              @natebirdman
+          <XStack gap="$2">
+            <Paragraph ta="center">Made by</Paragraph>
+            <Anchor col="$blue10" href="https://twitter.com/natebirdman" target="_blank">
+              @natebirdman,
             </Anchor>
-            ,{' '}
             <Anchor
-              color="$color12"
+              color="$purple10"
               href="https://github.com/tamagui/tamagui"
               target="_blank"
               rel="noreferrer"
             >
               give it a ⭐️
             </Anchor>
-          </Paragraph>
+          </XStack>
 
           <Button
             size="$6"

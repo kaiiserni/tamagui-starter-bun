@@ -1,10 +1,10 @@
 import { CustomToast, ToastProvider } from '@my/ui'
 import { JotaiProvider } from './jotai'
-import { SafeAreaProvider } from './safe-area'
 import { SolitoImageProvider } from './solito-image'
 import { TamaguiProvider } from './tamagui'
 import { TamaguiThemeProvider } from './theme'
 import { ToastViewport } from './toast-viewport'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 export function Provider({ children }: { children: React.ReactNode }) {
   return (
